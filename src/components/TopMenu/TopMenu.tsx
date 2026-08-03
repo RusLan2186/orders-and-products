@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
 import "./TopMenu.scss";
 import logo from "../../assets/logo.png";
+import { io } from "socket.io-client";
 
 const WEEKDAYS = [
-  "Воскресенье",
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
+
 const MONTHS = [
-  "Янв",
-  "Фев",
-  "Мар",
-  "Апр",
-  "Май",
-  "Июн",
-  "Июл",
-  "Авг",
-  "Сен",
-  "Окт",
-  "Ноя",
-  "Дек",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 const formatDate = (date: Date) => {
@@ -39,13 +41,27 @@ const formatDate = (date: Date) => {
 
   return { weekday, dateStr: `${day} ${month}, ${year}`, time };
 };
+const SOCKET_URL = "http://localhost:4000";
 
 export const TopMenu = () => {
   const [now, setNow] = useState(new Date());
+  const [activeSessions, setActiveSessions] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const socket = io(SOCKET_URL);
+
+    socket.on("sessions:count", (count: number) => {
+      setActiveSessions(count);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const { weekday, dateStr, time } = formatDate(now);
@@ -58,14 +74,20 @@ export const TopMenu = () => {
             <img src={logo} alt="Logo" className="top-menu__logo-icon" />
             <span className="top-menu__logo-text">INVENTORY</span>
           </a>
-          <input className="top-menu__search" type="text" placeholder="Поиск" />
+          <input className="top-menu__search" type="text" placeholder="Search" />
         </div>
-        <div className="top-menu__info">
-          <div className="top-menu__date">
-            <span className="top-menu__weekday">{weekday}</span>
-            <span className="top-menu__day">{dateStr}</span>
+        <div className="top-menu__end">
+          <div className="top-menu__info">
+            <div className="top-menu__date">
+              <span className="top-menu__weekday">{weekday}</span>
+              <span className="top-menu__day">{dateStr}</span>
+            </div>
+            <span className="top-menu__time">{time}</span>
           </div>
-          <span className="top-menu__time">{time}</span>
+          <div className="top-menu__sessions" title="Активные вкладки">
+            <span>Active Sessions:</span>
+            <span>{activeSessions}</span>
+          </div>
         </div>
       </div>
     </div>

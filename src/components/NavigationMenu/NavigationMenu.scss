@@ -5,13 +5,15 @@
   align-items: center;
 
   &__link {
+    position: relative;
+    display: inline-block;
+
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 0.5px;
     color: #8a97a3;
     text-decoration: none;
     text-transform: uppercase;
-    border-radius: 6px;
 
     &:hover {
       color: #7cb342;
@@ -19,6 +21,19 @@
 
     &--active {
       color: #7cb342;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+
+        width: 100%;
+        height: 4px;
+
+        background-color: #7cb342;
+        border-radius: 2px;
+      }
     }
   }
 }

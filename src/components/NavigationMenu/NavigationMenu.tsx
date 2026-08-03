@@ -10,7 +10,7 @@ export const NavigationMenu = () => {
           `nav-menu__link ${isActive ? "nav-menu__link--active" : ""}`
         }
       >
-        Приход
+        Orders
       </NavLink>
       <NavLink
         to="/products"
@@ -18,7 +18,7 @@ export const NavigationMenu = () => {
           `nav-menu__link ${isActive ? "nav-menu__link--active" : ""}`
         }
       >
-        Продукты
+        Products
       </NavLink>
     </nav>
   );
