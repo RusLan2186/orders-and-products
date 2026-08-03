@@ -1,0 +1,19 @@
+.aside-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 24px 16px;
+  width: 220px;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.08);
+  height: 91vh;
+
+  &__avatar {
+    margin-bottom: 30px;
+
+    &-icon {
+      height: 150px;
+    }
+  }
+}

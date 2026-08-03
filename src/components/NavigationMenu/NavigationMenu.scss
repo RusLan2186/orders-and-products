@@ -1,0 +1,24 @@
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+
+  &__link {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #8a97a3;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 6px;
+
+    &:hover {
+      color: #7cb342;
+    }
+
+    &--active {
+      color: #7cb342;
+    }
+  }
+}
