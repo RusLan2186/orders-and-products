@@ -1,0 +1,142 @@
+.order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #e5e9ed;
+  border-radius: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  &--selected {
+    border-color: #a8d178;
+    background: #fbfdf8;
+  }
+
+  &__title {
+    flex: 0.6;
+    font-size: 17px;
+    color: #7cb342;
+    text-decoration: underline;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  &__info {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+  }
+
+  &__count-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3d4852;
+  }
+
+  &__count-label {
+    font-size: 11px;
+    color: #9aa5ae;
+  }
+
+  &__dates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 110px;
+    font-size: 12px;
+    color: #9aa5ae;
+  }
+
+  &__date-short {
+    font-weight: 600;
+    color: #6b7680;
+  }
+
+  &__sums {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 130px;
+    font-size: 13px;
+    color: #3d4852;
+  }
+
+  &__sum-usd {
+    font-weight: 600;
+  }
+
+  &__sum-uah {
+    color: #9aa5ae;
+  }
+
+  &__delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 26px;
+    color: #c5ccd2;
+    flex-shrink: 0;
+    transition: 0.3s color ease;
+
+    &:hover {
+      color: #e05656;
+    }
+  }
+
+  &--compact {
+    width: 480px;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    gap: 30px;
+    position: relative;
+  }
+
+  &--compact .order-row__count {
+    align-items: flex-start;
+    font-size: 40px;
+  }
+
+     &--compact .order-row__count-value{
+      font-size: 26px;
+     }
+
+  &--compact .order-row__dates {
+    align-items: flex-start;
+    font-size: 17px;
+  }
+
+  &__arrow {
+    position: absolute;
+    right: -1px;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d5dbe0;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 0 8px 8px 0;
+  }
+}

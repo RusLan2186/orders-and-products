@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AsideMenu } from "./components/AsideMenu/AsideMenu";
-import { OrdersPage } from "./pages/OrdersPage";
-import { ProductsPage } from "./pages/ProductsPage";
+import { OrdersPage } from "./pages/OrdersPage/OrdersPage";
+import { ProductsPage } from "./pages/ProductsPage/ProductsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { TopMenu } from "./components/TopMenu/TopMenu";
 

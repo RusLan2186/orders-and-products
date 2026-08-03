@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { loadProducts } from '../store/productsSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { loadProducts } from '../../store/productsSlice';
 
 export const ProductsPage = () => {
   const dispatch = useAppDispatch();

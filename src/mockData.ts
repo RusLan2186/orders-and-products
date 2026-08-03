@@ -1,53 +1,65 @@
 import type { Order, Product } from "./types";
+import monitor from "./assets/monitor.png";
+import keyboard from "./assets/keyboard.avif";
+import laptop from "./assets/laptop.png";
 
 export const products: Product[] = [
   {
     id: 1,
     serialNumber: 12345671,
     isNew: true,
-    photo: "https://via.placeholder.com/60",
-    title: "Gigabyte Technology X58-USB3 (Socket 1366)",
-    type: "Monitors",
-    specification: "Specification 1",
-    guarantee: { start: "2017-04-06 00:00:00", end: "2025-08-06 00:00:00" },
+    photo: monitor,
+    title: 'Dell UltraSharp U2723QE 27" 4K Monitor',
+    type: "Monitor",
+    specification: "27-inch IPS, 3840×2160, USB-C",
+    guarantee: {
+      start: "2024-01-15 00:00:00",
+      end: "2027-01-15 00:00:00",
+    },
     price: [
-      { value: 2500, symbol: "USD", isDefault: false },
-      { value: 250000.5, symbol: "UAH", isDefault: true },
+      { value: 549, symbol: "USD", isDefault: false },
+      { value: 22800, symbol: "UAH", isDefault: true },
     ],
     order: 1,
-    date: "2017-09-06 12:09:33",
+    date: "2026-07-15 10:30:00",
   },
   {
     id: 2,
     serialNumber: 12345672,
     isNew: false,
-    photo: "https://via.placeholder.com/60",
-    title: "Gigabyte Technology X58-USB3 (Socket 1366)",
-    type: "Keyboards",
-    specification: "Specification 2",
-    guarantee: { start: "2017-04-06 00:00:00", end: "2025-08-06 00:00:00" },
+    photo: keyboard,
+    title: "Logitech MX Keys S Keyboard",
+    type: "Keyboard",
+    specification: "Wireless, Backlit, Bluetooth",
+    guarantee: {
+      start: "2023-05-20 00:00:00",
+      end: "2026-05-20 00:00:00",
+    },
     price: [
-      { value: 100, symbol: "USD", isDefault: false },
-      { value: 2600, symbol: "UAH", isDefault: true },
+      { value: 119, symbol: "USD", isDefault: false },
+      { value: 4950, symbol: "UAH", isDefault: true },
     ],
-    order: 1,
-    date: "2017-09-06 12:09:33",
+    order: 2,
+    date: "2026-06-22 14:15:00",
   },
   {
     id: 3,
     serialNumber: 12345673,
     isNew: true,
-    photo: "https://via.placeholder.com/60",
-    title: "Gigabyte Technology X58-USB3 (Socket 1366)",
-    type: "Monitors",
-    specification: "Specification 3",
-    guarantee: { start: "2017-04-06 00:00:00", end: "2025-08-06 00:00:00" },
+    photo: laptop,
+    title: "Apple MacBook Air M3 13-inch",
+    type: "Laptop",
+    specification: "13.6-inch, 16GB RAM, 512GB SSD",
+    guarantee: {
+      start: "2025-02-10 00:00:00",
+      end: "2028-02-10 00:00:00",
+    },
     price: [
-      { value: 50, symbol: "USD", isDefault: false },
-      { value: 1350, symbol: "UAH", isDefault: true },
+      { value: 1499, symbol: "USD", isDefault: false },
+      { value: 62200, symbol: "UAH", isDefault: true },
     ],
-    order: 2,
-    date: "2017-06-06 12:09:33",
+    order: 1,
+    date: "2026-05-10 09:45:00",
   },
 ];
 
