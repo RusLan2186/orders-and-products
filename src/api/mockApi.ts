@@ -4,6 +4,7 @@ import type { Order, Product } from '../types';
 
 const DELAY = 600; 
 
+
 export const fetchOrders = (): Promise<Order[]> =>
   new Promise((resolve) => {
     setTimeout(() => resolve(orders), DELAY);
