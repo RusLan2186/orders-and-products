@@ -43,7 +43,7 @@ const formatDate = (date: Date) => {
 
   return { weekday, dateStr: `${day} ${month}, ${year}`, time };
 };
-const SOCKET_URL = "http://localhost:4000";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:4000";
 
 export const TopMenu = () => {
   const [now, setNow] = useState(new Date());
