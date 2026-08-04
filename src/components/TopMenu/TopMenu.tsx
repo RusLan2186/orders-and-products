@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./TopMenu.scss";
 import logo from "../../assets/logo.png";
 import { io } from "socket.io-client";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setSearchQuery } from "../../store/searchSlice";
 
 const WEEKDAYS = [
   "Sunday",
@@ -46,6 +48,8 @@ const SOCKET_URL = "http://localhost:4000";
 export const TopMenu = () => {
   const [now, setNow] = useState(new Date());
   const [activeSessions, setActiveSessions] = useState(0);
+  const dispatch = useAppDispatch();
+  const query = useAppSelector((state) => state.search.query);
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
@@ -74,7 +78,13 @@ export const TopMenu = () => {
             <img src={logo} alt="Logo" className="top-menu__logo-icon" />
             <span className="top-menu__logo-text">INVENTORY</span>
           </a>
-          <input className="top-menu__search" type="text" placeholder="Search" />
+          <input
+            className="top-menu__search"
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+          />
         </div>
         <div className="top-menu__end">
           <div className="top-menu__info">

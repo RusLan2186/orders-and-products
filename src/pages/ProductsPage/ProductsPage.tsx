@@ -1,33 +1,43 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { loadProducts, removeProduct } from '../../store/productsSlice';
-import { selectProductTypes } from '../../store/selectors';
-import { ProductsList } from '../../components/Products/ProductsList/ProductsList';
-import { ProductsFilter } from '../../components/Products/ProductsFilter/ProductsFilter';
-import { DeleteModal } from '../../components/DeleteModal/DeleteModal';
-import './ProductsPage.scss';
+import { useEffect, useMemo, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { loadProducts, removeProduct } from "../../store/productsSlice";
+import { selectProductTypes } from "../../store/selectors";
+import { ProductsList } from "../../components/Products/ProductsList/ProductsList";
+import { ProductsFilter } from "../../components/Products/ProductsFilter/ProductsFilter";
+import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
+import "./ProductsPage.scss";
 
 export const ProductsPage = () => {
   const dispatch = useAppDispatch();
   const { items, loading, error } = useAppSelector((state) => state.products);
   const types = useAppSelector(selectProductTypes);
 
-  const [selectedType, setSelectedType] = useState('');
+  const [selectedType, setSelectedType] = useState("");
   const [productToDelete, setProductToDelete] = useState<number | null>(null);
+  const searchQuery = useAppSelector((state) => state.search.query);
 
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
 
   const filteredProducts = useMemo(() => {
-    if (!selectedType) return items;
-    return items.filter((p) => p.type === selectedType);
-  }, [items, selectedType]);
+    let result = items;
+    if (selectedType) {
+      result = result.filter((p) => p.type === selectedType);
+    }
+    if (searchQuery.trim()) {
+      result = result.filter((p) =>
+        p.title.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+    }
+    return result;
+  }, [items, selectedType, searchQuery]);
 
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const productPendingDeletion = items.find((p) => p.id === productToDelete) ?? null;
+  const productPendingDeletion =
+    items.find((p) => p.id === productToDelete) ?? null;
 
   const handleConfirmDelete = () => {
     if (productToDelete !== null) {
@@ -39,11 +49,20 @@ export const ProductsPage = () => {
   return (
     <div className="products-page">
       <div className="products-page__header">
-        <h1 className="products-page__heading">Products / {filteredProducts.length}</h1>
-        <ProductsFilter types={types} selectedType={selectedType} onChange={setSelectedType} />
+        <h1 className="products-page__heading">
+          Products / {filteredProducts.length}
+        </h1>
+        <ProductsFilter
+          types={types}
+          selectedType={selectedType}
+          onChange={setSelectedType}
+        />
       </div>
 
-      <ProductsList products={filteredProducts} onDeleteProduct={setProductToDelete} />
+      <ProductsList
+        products={filteredProducts}
+        onDeleteProduct={setProductToDelete}
+      />
 
       {productPendingDeletion && (
         <DeleteModal
