@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# Orders & Products — SPA Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Test assignment: SPA application for managing orders and products with real-time functionality.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** https://orders-and-products-front.onrender.com
+🔗 **Backend (WebSocket API):** https://orders-and-products-qf4m.onrender.com
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> ⚠️ Backend is hosted on Render's free tier — it "spins down" after inactivity and may take ~30-50 seconds to respond on the first request.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse the list of orders with an expandable details panel showing products inside each order
+- Browse the list of products with a filter by type
+- Delete orders and products with a confirmation modal
+- Global search by title (across orders and products)
+- Real-time counter of active application tabs via WebSocket
+- Live clock and date in the top menu
+- Smooth animated transitions between pages and components
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19 + TypeScript
+- Redux Toolkit (async thunks simulating a REST API)
+- React Router
+- Socket.io (client + server)
+- Framer Motion (animations)
+- SCSS (BEM methodology)
+- Docker / docker-compose
+- Vite
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clone the repository
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone <https://github.com/RusLan2186/orders-and-products>
+cd orders-and-products
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Run the frontend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
+
+The app will be available at `http://localhost:5173`
+
+### 3. Run the WebSocket server (in a separate terminal)
+
+```bash
+cd server
+npm install
+npm start
+```
+
+The server will be available at `http://localhost:4000`
+
+> Both processes (frontend and WebSocket server) must be running for the active sessions counter to work correctly.
+
+## Running with Docker
+
+```bash
+docker compose up --build
+```
+
+The app will be available at `http://localhost:3000`, and the WebSocket server at `http://localhost:4000`.
+
+## Environment Variables
+
+For the production frontend build, the following variable is used:
