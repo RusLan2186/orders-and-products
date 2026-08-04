@@ -19,3 +19,13 @@ export const selectOrderSummary = (state: RootState, orderId: number) => {
 
   return { count, totalUSD, totalUAH };
 };
+
+export const selectOrderTitleById = (state: RootState, orderId: number) => {
+  const order = state.orders.items.find((o) => o.id === orderId);
+  return order?.title ?? '—';
+};
+
+export const selectProductTypes = (state: RootState) => {
+  const types = state.products.items.map((p) => p.type);
+  return Array.from(new Set(types));
+};

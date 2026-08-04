@@ -1,0 +1,131 @@
+.product-row {
+  display: grid;
+  grid-template-columns: 12px // status dot
+    40px // photo
+    270px // title + serial
+    80px // state
+    140px // guarantee
+    50px // type
+    120px // prices
+    1fr // order title
+    100px // date
+    50px; // delete
+  align-items: center;
+  column-gap: 20px;
+  background: #fff;
+  border: 1px solid #e5e9ed;
+  border-radius: 8px;
+  padding: 14px 20px;
+  min-width: 1100px;
+
+  &__status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &--available {
+      background: #a8c957;
+    }
+
+    &--repair {
+      background: #4a5560;
+    }
+  }
+
+  &__photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #f4f6f8;
+  }
+
+  &__info {
+    min-width: 0;
+  }
+
+  &__title {
+    display: block;
+    font-size: 14px;
+    color: #a8c957;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  &__serial {
+    font-size: 11px;
+    color: #9aa5ae;
+  }
+
+  &__state {
+    font-size: 13px;
+    font-weight: 600;
+
+    &--available {
+      color: #a8c957;
+    }
+
+    &--repair {
+      color: #4a5560;
+    }
+  }
+
+  &__guarantee {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: #9aa5ae;
+  }
+
+  &__type {
+    font-size: 13px;
+    color: #4a5560;
+  }
+
+  &__prices {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 13px;
+    color: #3d4852;
+  }
+
+  &__price-usd {
+    font-weight: 600;
+  }
+
+  &__price-uah {
+    color: #9aa5ae;
+  }
+
+  &__order-title {
+    font-size: 13px;
+    color: #4a5560;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    text-align: center;
+  }
+
+  &__date {
+    font-size: 12px;
+    color: #9aa5ae;
+    text-align: right;
+  }
+
+  &__delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #c5ccd2;
+    justify-self: end;
+    font-size: 30px;
+
+    &:hover {
+      color: #e05656;
+    }
+  }
+}

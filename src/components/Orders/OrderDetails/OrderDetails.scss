@@ -54,7 +54,7 @@
   &__inner {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 15px;
     flex: 0.7;
   }
 
@@ -71,9 +71,8 @@
   }
 
   &__product-title {
-    font-size: 15px;
-    color: #4a90d9;
-    text-decoration: underline;
+    font-size: 17px;
+    color: #7cb342;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -85,9 +84,9 @@
   }
 
   &__status {
-    font-size: 16px;
-    font-weight: 600;
-    color: #a8c957;
+    font-size: 15px;
+    font-weight: 400;
+    color: #000000;
   }
 
   &__delete {

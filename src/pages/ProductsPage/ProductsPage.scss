@@ -1,0 +1,15 @@
+.products-page {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  &__heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3d4852;
+    white-space: nowrap;
+  }
+}

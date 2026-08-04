@@ -1,0 +1,26 @@
+.products-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__label {
+    font-size: 13px;
+    color: #9aa5ae;
+  }
+
+  &__select {
+    padding: 8px 14px;
+    border: 1px solid #d5dbe0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a5560;
+    background: #fff;
+    outline: none;
+    min-width: 140px;
+
+    &:focus {
+      border-color: #7cb342;
+    }
+  }
+}
