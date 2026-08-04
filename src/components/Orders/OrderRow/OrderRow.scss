@@ -9,6 +9,7 @@
   padding: 16px 20px;
   cursor: pointer;
   transition:
+    width 0.25s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 
@@ -116,9 +117,9 @@
     font-size: 40px;
   }
 
-     &--compact .order-row__count-value{
-      font-size: 26px;
-     }
+  &--compact .order-row__count-value {
+    font-size: 26px;
+  }
 
   &--compact .order-row__dates {
     align-items: flex-start;

@@ -6,6 +6,7 @@ import { ProductsList } from "../../components/Products/ProductsList/ProductsLis
 import { ProductsFilter } from "../../components/Products/ProductsFilter/ProductsFilter";
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 import "./ProductsPage.scss";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const ProductsPage = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +34,6 @@ export const ProductsPage = () => {
     return result;
   }, [items, selectedType, searchQuery]);
 
-  if (loading) return <div>Loading products...</div>;
   if (error) return <div>Error: {error}</div>;
 
   const productPendingDeletion =
@@ -48,30 +48,43 @@ export const ProductsPage = () => {
 
   return (
     <div className="products-page">
-      <div className="products-page__header">
-        <h1 className="products-page__heading">
-          Products / {filteredProducts.length}
-        </h1>
-        <ProductsFilter
-          types={types}
-          selectedType={selectedType}
-          onChange={setSelectedType}
-        />
-      </div>
+      {loading ? (
+        <div className="products-page__loading">Loading products...</div>
+      ) : (
+        <motion.div
+          key="products-content"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          <div className="products-page__header">
+            <h1 className="products-page__heading">
+              Products / {filteredProducts.length}
+            </h1>
+            <ProductsFilter
+              types={types}
+              selectedType={selectedType}
+              onChange={setSelectedType}
+            />
+          </div>
 
-      <ProductsList
-        products={filteredProducts}
-        onDeleteProduct={setProductToDelete}
-      />
+          <ProductsList
+            products={filteredProducts}
+            onDeleteProduct={setProductToDelete}
+          />
 
-      {productPendingDeletion && (
-        <DeleteModal
-          title={productPendingDeletion.title}
-          subtitle={`SN-${productPendingDeletion.serialNumber}`}
-          photo={productPendingDeletion.photo}
-          onConfirm={handleConfirmDelete}
-          onCancel={() => setProductToDelete(null)}
-        />
+          <AnimatePresence>
+            {productPendingDeletion && (
+              <DeleteModal
+                title={productPendingDeletion.title}
+                subtitle={`SN-${productPendingDeletion.serialNumber}`}
+                photo={productPendingDeletion.photo}
+                onConfirm={handleConfirmDelete}
+                onCancel={() => setProductToDelete(null)}
+              />
+            )}
+          </AnimatePresence>
+        </motion.div>
       )}
     </div>
   );

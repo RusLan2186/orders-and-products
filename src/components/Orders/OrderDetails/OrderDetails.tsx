@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useAppSelector } from "../../../store/hooks";
 import { selectProductsByOrderId } from "../../../store/selectors";
 import type { Order } from "../../../types";
@@ -19,7 +20,13 @@ export const OrderDetails = ({
   );
 
   return (
-    <div className="order-details">
+    <motion.div
+      className="order-details"
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 24 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+    >
       <button className="order-details__close" onClick={onClose}>
         ✕
       </button>
@@ -59,11 +66,9 @@ export const OrderDetails = ({
             </div>
           ))
         ) : (
-          <p className="empty">
-            No products found for this order.
-          </p>
+          <p className="empty">No products found for this order.</p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -7,6 +7,7 @@ import { OrderDetails } from "../../components/Orders/OrderDetails/OrderDetails"
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 
 import "./OrdersPage.scss";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const OrdersPage = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +30,6 @@ export const OrdersPage = () => {
     );
   }, [items, searchQuery]);
 
-  if (loading) return <div>Loading orders...</div>;
   if (error) return <div>Error: {error}</div>;
 
   const selectedOrder = items.find((o) => o.id === selectedOrderId) ?? null;
@@ -57,40 +57,61 @@ export const OrdersPage = () => {
 
   return (
     <div className="orders-page">
-      <h1 className="orders-page__heading">Orders / {filteredOrders.length}</h1>
-      <div className="orders-page__body">
-        <OrdersList
-          orders={filteredOrders}
-          selectedOrderId={selectedOrderId}
-          onSelectOrder={setSelectedOrderId}
-          onDeleteOrder={setOrderToDelete}
-        />
-        {selectedOrder && (
-          <OrderDetails
-            order={selectedOrder}
-            onClose={() => setSelectedOrderId(null)}
-            onDeleteProduct={setProductToDelete}
+      {loading ? (
+        <div className="orders-page__loading">Loading orders...</div>
+      ) : (
+        <>
+          <h1 className="orders-page__heading">
+            Orders / {filteredOrders.length}
+          </h1>
+
+          <motion.div
+            key="orders-content"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="orders-page__body"
+          >
+            <OrdersList
+              orders={filteredOrders}
+              selectedOrderId={selectedOrderId}
+              onSelectOrder={setSelectedOrderId}
+              onDeleteOrder={setOrderToDelete}
+            />
+
+            <AnimatePresence>
+              {selectedOrder && (
+                <OrderDetails
+                  order={selectedOrder}
+                  onClose={() => setSelectedOrderId(null)}
+                  onDeleteProduct={setProductToDelete}
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </>
+      )}
+
+      <AnimatePresence>
+        {orderPendingDeletion && (
+          <DeleteModal
+            title={orderPendingDeletion.title}
+            onConfirm={handleConfirmDeleteOrder}
+            onCancel={() => setOrderToDelete(null)}
           />
         )}
-      </div>
-
-      {orderPendingDeletion && (
-        <DeleteModal
-          title={orderPendingDeletion.title}
-          onConfirm={handleConfirmDeleteOrder}
-          onCancel={() => setOrderToDelete(null)}
-        />
-      )}
-
-      {productPendingDeletion && (
-        <DeleteModal
-          title={productPendingDeletion.title}
-          subtitle={`SN-${productPendingDeletion.serialNumber}`}
-          photo={productPendingDeletion.photo}
-          onConfirm={handleConfirmDeleteProduct}
-          onCancel={() => setProductToDelete(null)}
-        />
-      )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {productPendingDeletion && (
+          <DeleteModal
+            title={productPendingDeletion.title}
+            subtitle={`SN-${productPendingDeletion.serialNumber}`}
+            photo={productPendingDeletion.photo}
+            onConfirm={handleConfirmDeleteProduct}
+            onCancel={() => setProductToDelete(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

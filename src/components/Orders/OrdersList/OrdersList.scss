@@ -1,11 +1,21 @@
 .orders-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  transition:
+    width 0.25s ease,
+    flex 0.25s ease;
+  will-change: width, flex-basis;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
   &--compact {
-    flex: none;
+    flex: 0 0 500px;
     width: 500px;
   }
 }

@@ -1,10 +1,13 @@
 .order-details {
   position: relative;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   background: #fff;
   border: 1px solid #e5e9ed;
   border-radius: 8px;
   padding: 24px;
+  overflow: hidden;
+  will-change: transform, opacity;
 
   &__close {
     position: absolute;
@@ -101,6 +104,4 @@
       color: #e05656;
     }
   }
-
-
 }

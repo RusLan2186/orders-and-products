@@ -7,6 +7,7 @@ import {
 } from "../../../utils/formatters";
 import type { Order } from "../../../types";
 import "./OrderRow.scss";
+import { motion } from "framer-motion";
 
 interface OrderRowProps {
   order: Order;
@@ -28,7 +29,9 @@ export const OrderRow = ({
   );
 
   return (
-    <div
+    <motion.div
+      layout
+      transition={{ duration: 0.25 }}
       className={`order-row ${isSelected ? "order-row--selected" : ""} ${isCompact ? "order-row--compact" : ""}`}
       onClick={onSelect}
     >
@@ -72,6 +75,6 @@ export const OrderRow = ({
       )}
 
       {isCompact && isSelected && <div className="order-row__arrow">›</div>}
-    </div>
+    </motion.div>
   );
 };
