@@ -36,7 +36,7 @@ Test assignment: SPA application for managing orders and products with real-time
 ### 1. Clone the repository
 
 ```bash
-git clone <https://github.com/RusLan2186/orders-and-products>
+git clone https://github.com/RusLan2186/orders-and-products
 cd orders-and-products
 ```
 
@@ -69,6 +69,5 @@ docker compose up --build
 
 The app will be available at `http://localhost:3000`, and the WebSocket server at `http://localhost:4000`.
 
-## Environment Variables
 
-For the production frontend build, the following variable is used:
+
