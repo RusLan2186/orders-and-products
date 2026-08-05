@@ -7,15 +7,28 @@ import { ProductsFilter } from "../../components/Products/ProductsFilter/Product
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 import "./ProductsPage.scss";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  getStoredValue,
+  setStoredValue,
+  STORAGE_KEYS,
+} from "../../utils/storage";
 
 export const ProductsPage = () => {
   const dispatch = useAppDispatch();
   const { items, loading, error } = useAppSelector((state) => state.products);
   const types = useAppSelector(selectProductTypes);
 
-  const [selectedType, setSelectedType] = useState("");
   const [productToDelete, setProductToDelete] = useState<number | null>(null);
   const searchQuery = useAppSelector((state) => state.search.query);
+
+  const [selectedType, setSelectedType] = useState(
+    () => getStoredValue(STORAGE_KEYS.PRODUCT_TYPE_FILTER) ?? "",
+  );
+
+  const handleTypeChange = (type: string) => {
+    setSelectedType(type);
+    setStoredValue(STORAGE_KEYS.PRODUCT_TYPE_FILTER, type);
+  };
 
   useEffect(() => {
     dispatch(loadProducts());
@@ -64,7 +77,7 @@ export const ProductsPage = () => {
             <ProductsFilter
               types={types}
               selectedType={selectedType}
-              onChange={setSelectedType}
+              onChange={handleTypeChange}
             />
           </div>
 

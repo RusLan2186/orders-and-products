@@ -1,11 +1,12 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { getStoredValue, setStoredValue, STORAGE_KEYS } from '../utils/storage';
 
 interface SearchState {
   query: string;
 }
 
 const initialState: SearchState = {
-  query: '',
+  query: getStoredValue(STORAGE_KEYS.SEARCH_QUERY) ?? '',
 };
 
 const searchSlice = createSlice({
@@ -14,6 +15,7 @@ const searchSlice = createSlice({
   reducers: {
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
+      setStoredValue(STORAGE_KEYS.SEARCH_QUERY, action.payload);
     },
   },
 });
