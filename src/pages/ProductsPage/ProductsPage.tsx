@@ -5,6 +5,7 @@ import { selectProductTypes } from "../../store/selectors";
 import { ProductsList } from "../../components/Products/ProductsList/ProductsList";
 import { ProductsFilter } from "../../components/Products/ProductsFilter/ProductsFilter";
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
+import { PageLoader } from "../../components/PageLoader/PageLoader";
 import "./ProductsPage.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -62,7 +63,7 @@ export const ProductsPage = () => {
   return (
     <div className="products-page">
       {loading ? (
-        <div className="products-page__loading">Loading products...</div>
+        <PageLoader message="Loading products..." />
       ) : (
         <motion.div
           key="products-content"

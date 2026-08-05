@@ -5,6 +5,7 @@ import { removeProduct } from "../../store/productsSlice";
 import { OrdersList } from "../../components/Orders/OrdersList/OrdersList";
 import { OrderDetails } from "../../components/Orders/OrderDetails/OrderDetails";
 import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
+import { PageLoader } from "../../components/PageLoader/PageLoader";
 
 import "./OrdersPage.scss";
 import { AnimatePresence, motion } from "framer-motion";
@@ -58,7 +59,7 @@ export const OrdersPage = () => {
   return (
     <div className="orders-page">
       {loading ? (
-        <div className="orders-page__loading">Loading orders...</div>
+        <PageLoader message="Loading orders..." />
       ) : (
         <>
           <h1 className="orders-page__heading">

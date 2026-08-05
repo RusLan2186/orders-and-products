@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { PageLoader } from "../components/PageLoader/PageLoader";
 
 const OrdersPage = lazy(() =>
   import("../pages/OrdersPage/OrdersPage").then((m) => ({
@@ -17,9 +18,6 @@ const NotFoundPage = lazy(() =>
     default: m.NotFoundPage,
   })),
 );
-
-
-const PageLoader = () => <div className="page-loader">Loading...</div>;
 
 export const AnimatedRoutes = () => {
   const location = useLocation();
