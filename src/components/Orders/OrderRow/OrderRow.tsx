@@ -31,7 +31,7 @@ export const OrderRow = ({
   return (
     <motion.div
       layout
-      transition={{ duration: 0.25 }}
+      transition={{ duration: 0.40 }}
       className={`order-row ${isSelected ? "order-row--selected" : ""} ${isCompact ? "order-row--compact" : ""}`}
       onClick={onSelect}
     >

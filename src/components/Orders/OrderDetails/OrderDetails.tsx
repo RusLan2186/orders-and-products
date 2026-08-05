@@ -20,13 +20,7 @@ export const OrderDetails = ({
   );
 
   return (
-    <motion.div
-      className="order-details"
-      initial={{ opacity: 0, x: 24 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 24 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-    >
+    <motion.div className="order-details">
       <button className="order-details__close" onClick={onClose}>
         ✕
       </button>
