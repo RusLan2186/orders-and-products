@@ -16,15 +16,18 @@ Test assignment: SPA application for managing orders and products with real-time
 - Real-time counter of active application tabs via WebSocket
 - Live clock and date in the top menu
 - Smooth animated transitions between pages and components
+- Search query and product type filter persisted in localStorage between sessions
+- Lazy-loaded pages for improved initial load performance
 
 ## Tech Stack
 
 - React 19 + TypeScript
 - Redux Toolkit (async thunks simulating a REST API)
-- React Router
+- React Router (with lazy-loaded routes)
 - Socket.io (client + server)
 - Framer Motion (animations)
 - SCSS (BEM methodology)
+- Web Storage API (localStorage)
 - Docker / docker-compose
 - Vite
 
